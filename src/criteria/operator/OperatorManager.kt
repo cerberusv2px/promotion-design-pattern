@@ -3,7 +3,7 @@ package criteria.operator
 class OperatorManager {
 
     companion object {
-        fun compareCriteria(quantity: Int, criteriaValue: Int, operator: String): Boolean {
+       private fun compareCriteria(quantity: Int, criteriaValue: Int, operator: String): Boolean {
             return when (operator) {
                 "GREATER THAN" -> quantity > criteriaValue
                 "LESS THAN" -> quantity < criteriaValue
@@ -12,8 +12,24 @@ class OperatorManager {
             }
         }
 
-//        fun cC2(quantity: Int, minV, minT, maxV, maxT): Boolean {
-//            if(compareCriteria(q,minV, minT) && compareCriteria(q))
-//        }
+        fun isCriteriaValid(
+            totalQuantity: Int,
+            minValue: Int,
+            minOperator: String,
+            maxValue: Int,
+            maxOperator: String
+        ): Boolean {
+
+            return (compareCriteria(
+                totalQuantity,
+                minValue,
+                minOperator
+            )
+                    && compareCriteria(
+                totalQuantity,
+                maxValue,
+                maxOperator
+            ))
+        }
     }
 }
