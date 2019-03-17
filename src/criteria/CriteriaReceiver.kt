@@ -16,13 +16,10 @@ class CriteriaReceiver(private val listener: PromotionListener) {
 
     fun handleAmount(promotionModel: PromotionModel) {
         val totalQuantity = promotionModel.skuList.sumBy { it.quantity }
-
-        if (OperatorManager.compareCriteria(
+        if (OperatorManager.isCriteriaValid(
                 totalQuantity,
                 promotionModel.criteriaMinValue,
-                promotionModel.criteriaMinOperator
-            ) && OperatorManager.compareCriteria(
-                totalQuantity,
+                promotionModel.criteriaMinOperator,
                 promotionModel.criteriaMaxValue,
                 promotionModel.criteriaMaxOperator
             )
@@ -56,13 +53,10 @@ class CriteriaReceiver(private val listener: PromotionListener) {
 
     fun handleQuantity(promotionModel: PromotionModel) {
         val totalQuantity = promotionModel.skuList.sumBy { it.quantity }
-
-        if (OperatorManager.compareCriteria(
+        if (OperatorManager.isCriteriaValid(
                 totalQuantity,
                 promotionModel.criteriaMinValue,
-                promotionModel.criteriaMinOperator
-            ) && OperatorManager.compareCriteria(
-                totalQuantity,
+                promotionModel.criteriaMinOperator,
                 promotionModel.criteriaMaxValue,
                 promotionModel.criteriaMaxOperator
             )
